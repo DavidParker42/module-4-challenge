@@ -14,6 +14,7 @@ function startGame() {
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
   startTimer()
+  document.getElementById( 'start-button' ).style.display = 'none';
 }
 
 function winGame() {
@@ -112,6 +113,14 @@ function resetGame() {
 resetButton.addEventListener("click", resetGame);
 
 
+function questions() {
+  isWin = false;
+  timerCount = 15;
+  // Prevents start button from being clicked when round is in progress
+  startButton.disabled = true;
+  startTimer()
+  document.getElementById( 'start-button' ).style.display = 'none';
+}
 
 let questions = [
     {
