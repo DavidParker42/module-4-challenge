@@ -14,7 +14,7 @@ function startGame() {
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
   startTimer()
-  document.getElementById( 'start-button' ).style.display = 'none';
+  document.getElementById( 'start-button' ).style.display = none;
 }
 
 function winGame() {
@@ -95,7 +95,7 @@ function getlosses() {
 startButton.addEventListener("click", startGame);
 
 // Calls init() so that it fires when page opened
-init();
+// init();
 
 // Bonus: Add reset button
 var resetButton = document.querySelector(".reset-button");
@@ -120,9 +120,10 @@ function questions() {
   startButton.disabled = true;
   startTimer()
   document.getElementById( 'start-button' ).style.display = 'none';
+  document.getElementById("queston");
 }
 
-let questions = [
+var qlist = [
     {
     numb: 1,
     question: "What is Davids favortite color?",
