@@ -1,21 +1,72 @@
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
-var timerElement = document.querySelector(".timer-count");
-var startButton = document.querySelector(".start-button");
+var timerElement = document.getElementById("time");
+var startButton = document.getElementById("start");
+var questionsEl = document.getElementById("questions");
+var choicesEl = document.getElementById("choices");
+var submitbtn = document.getElementById("submit");
+var initialsEl = document.getElementById("initials")
+var timerId;
+var time = 60;
+var currentQuestionIndex = 0;
 
-function init() {
-  getWins();
-  getlosses();
-}
+// function init() {
+//   getWins();
+//   getlosses();
+// }
 
 function startGame() {
-  isWin = false;
-  timerCount = 15;
-  // Prevents start button from being clicked when round is in progress
-  startButton.disabled = true;
-  startTimer()
-  document.getElementById( 'start-button' ).style.display = none;
+  var startscreenEl = document.getElementById("start-screen")
+  // hides start screen
+  startscreenEl.setAttribute("class", "hide");
+  // removes hide class from questions
+  questionsEl.removeAttribute("class");
+  // setinterval is used to create  imers, used with miliseconds
+  timerId = setInterval (countdown, 1000);
+  // uses var time 60
+  timerElement.textContent = time;
+  getQuestion ();
+  
+  // isWin = false;
+  // timerCount = 15;
+  // // Prevents start button from being clicked when round is in progress
+  // startButton.disabled = true;
+  // startTimer()
+  // document.getElementById( 'start-button' ).style.display = none;
 }
+
+function countdown (){
+  time--;
+  timerElement.textContent=time;
+  if (time<= 0){
+    quizEnd ();
+  }
+}
+
+function getQuestion(){
+  // will give us first question object from qlist
+var currentQuestion = qlist [currentQuestionIndex];
+var titleEl = document.getElementById("question-title");
+// puts "question" into html element
+titleEl.textContent = currentQuestion.question;
+// clears out choices from previous questions
+choicesEl.innerHTML = "";
+for (var i = 0; i < currentQuestion.options.length; i++){
+  var option = currentQuestion.options[i];
+  var optionNode = document.createElement("button");
+  // gives button a class of option
+  optionNode.setAttribute("class", "option");
+  // value of button will now be linked to the option itself
+  optionNode.setAttribute("value", option);
+  optionNode.textContent = i + 1 + ". " + option;
+  choicesEl.appendChild (optionNode);
+}
+
+}
+// need a function that handles a click event, for if it is right or wrong, incriment the current question index. quiz end function it clears out the interval and hides the questions, show final score, saving the score get the value get the initials and set it into local storage. click events for each button. need a high scores page that is added to my existing html or add an additional html
+
+
+
 
 function winGame() {
   wordBlank.textContent = "YOU WON!!!🏆 ";
@@ -125,7 +176,7 @@ function questions() {
 
 var qlist = [
     {
-    numb: 1,
+     
     question: "What is Davids favortite color?",
     answer: "Blue",
     options: [
@@ -136,7 +187,7 @@ var qlist = [
     ]
   },
     {
-    numb: 2,
+    
     question: "What is David's favorite food?",
     answer: "Pizza",
     options: [
@@ -147,7 +198,7 @@ var qlist = [
     ]
   },
     {
-    numb: 3,
+    
     question: "What color is grass?",
     answer: "Green",
     options: [
@@ -158,7 +209,7 @@ var qlist = [
     ]
   },
     {
-    numb: 4,
+    
     question: "Where do cars drive?",
     answer: "On the road",
     options: [
@@ -169,7 +220,7 @@ var qlist = [
     ]
   },
     {
-    numb: 5,
+    
     question: "Which character is a letter?",
     answer: "K",
     options: [

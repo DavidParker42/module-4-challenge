@@ -10,58 +10,29 @@
     
 </head>
 <body>
-    <!-- start Quiz button -->
-    <div class="start-button"><button>Start Quiz</button></div>
-     <div class="win"></div>
-     <div class="lose"></div>
-    <!-- Info Box -->
-    <div class="info_box">
-        <div class="info-title"><span>Coding Quiz Challenge</span></div>
-        <div class="info-list">
-            <div class="info">Try to answer the following code-related questions within the time limit. keep in mid that incorrect answers will penalize your score/time by 15 seconds.</div>
-            
-            
+    <div class="timer">Time: <span id="time"> 0 </span></div>
+    <!-- holds everything within the quiz, can hide elements as needed. -->
+    <div class="wrapper">
+        <div id="start-screen" class="start">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. keep in mid that incorrect answers will penalize your score/time by 15 seconds.</p>
+            <button id="start">Start</button>
         </div>
-        <div class="buttons">
-            <button class="quit">Exit Quiz</button>
-            <button class="reset-button">Reset Score</button>
+        <div id="questions" class="hide">
+            <h2 id="question-title"></h2>
+            <div id="choices" class="choices"></div>
         </div>
-    </div>
-    <div class="quiz_box">
-        <header>
-            <div class="title">Awesome Quiz Application</div>
-            <div class="timer">
-                <div class="time_left_txt">Time Left</div>
-                <div class="timer_sec">15</div>
-            </div>
-            <div class="time_line"></div>
-        </header>
-        <section>
-            <div class="question"> </div>
-            <div class="answer"> </div>
-            <div class="que_text">
-            </div>
-            <div class="option_list">
-            </div>
-        </section>
-        <footer>
-            <div class="total_que">
-            </div>
-            <button class="next_btn">Next Que</button>
-        </footer>
-    </div>
-    <div class="result_box">
-        <div class="icon">
-            <i class="fas fa-crown"></i>
-        </div>
-        <div class="complete_text">You've completed the Quiz!</div>
-        <div class="score_text">
-        </div>
-        <div class="buttons">
-            <button class="restart">Replay Quiz</button>
-            <button class="quit">Quit Quiz</button>
+        <div id="end-screen" class="hide">
+            <h2>You Completed the Quiz!</h2>
+            <p>Final Score: <span id="final-score"></span></p>
+            <p>Enter Initials: <input type="text" id="initials"/></p>
+            <button id="submit">submit</button>
         </div>
     </div>
+
+
+
+    
     <script src="./Assets/js/script.js"></script>
 </body>
 </html>

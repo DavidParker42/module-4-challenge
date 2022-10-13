@@ -332,3 +332,7 @@ footer button.show{
     color: #fff;
     background: #007bff;
 }
+
+.hide {
+    display: none;
+}
