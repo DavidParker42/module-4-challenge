@@ -83,7 +83,7 @@ var timerInterval;
 var score = 0;
 var correct; 
 
-function questions_quiz({
+function questions_quiz(){
   gameoverDiv.style.display = "none";
   if (currentQuestionIndex === finalQuestionIndex){
     return showScore();
@@ -94,14 +94,14 @@ function questions_quiz({
   button_b.innerHTML = current_question.length(1);
   button_c.innerHTML = current_question.length(2);
   button_d.innerHTML = current_question.length(3);
-})
+}
 
 function quizStart(){
 All_doneDiv.style.display = "none";
 questionsDiv.style.display = "none";
 questions_quiz();
 
-timerInterval = setInterval((function) {
+timerInterval = setInterval(function() {
   timeLeft--;
   timerElement.textContent = "Time left:" + time;
 
