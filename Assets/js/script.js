@@ -136,9 +136,28 @@ function quizEnd(){
   clearInterval(timerId);
   // removes hide class from questions
   end_screen.removeAttribute("class");
+  // setHighScore();
+  getHighScore();
   
 }
 
+
+function setHighScore(){
+  localStorage.setItem("savedHighScore",  score + "-" + initialsEl.value);
+}
+
+function getHighScore(){
+  var highScore= document.getElementById("high-score");
+  highScore.textContent = localStorage.getItem("savedHighScore");
+}
+
+function submittedScore(){
+  setHighScore();
+  getHighScore();
+  alert("Score Submitted");
+}
+
+submitbtn.addEventListener("click", submittedScore);
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
