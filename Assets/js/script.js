@@ -77,6 +77,9 @@ var qlist = [
 ];
 
 
+choicesEl.addEventListener("click", function(event){
+  console.log(event.target.id)
+});
 
 function startGame() {
   var startscreenEl = document.getElementById("start-screen")
@@ -121,7 +124,8 @@ for (var i = 0; i < currentQuestion.options.length; i++){
   optionNode.setAttribute("class", "option");
   // value of button will now be linked to the option itself
   optionNode.setAttribute("value", option);
-  optionNode.textContent = i + 1 + ". " + option;
+  optionNode.id = "button_" + i;
+  optionNode.textContent = option;
   choicesEl.appendChild (optionNode);
   // optionNode.addEventListener("click", answer_check(option));
 }
