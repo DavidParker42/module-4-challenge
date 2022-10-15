@@ -3,12 +3,13 @@ var lose = document.querySelector(".lose");
 var quiz_body = document.getElementById("questions")
 var timerElement = document.getElementById("time");
 var startButton = document.getElementById("start");
+var resetButton = document.getElementById("reset")
 var questionsEl = document.getElementById("questions");
 var choicesEl = document.getElementById("choices");
 var submitbtn = document.getElementById("submit");
 var initialsEl = document.getElementById("initials")
 var timerId;
-var time = 6;
+var time = 5;
 var currentQuestionIndex = 0;
 var button_a;
 var button_b;
@@ -16,7 +17,6 @@ var button_c;
 var button_d;
 // var final_question_index = qlist.length() - 1;
 // var randomQuestionIndex = (Math.floor(Math.random() * final_question_index))
-var timeLeft = 100;
 var timerInterval;
 var score = 0;
 var correct; 
@@ -143,18 +143,25 @@ function quizEnd(){
 
 
 function setHighScore(){
-  localStorage.setItem("savedHighScore",  score + "-" + initialsEl.value);
+  if (score > localStorage.getItem("savedHighScore")){
+    localStorage.setItem("savedHighScore", score);
+    localStorage.setItem("savedInitials", initialsEl.value);
+    alert("Score Submitted");
+  }
+  else alert ("Score not greater than high score");
 }
 
 function getHighScore(){
+  var highscore = localStorage.getItem("savedHighScore");
+  var initials = localStorage.getItem("savedInitials");
   var highScore= document.getElementById("high-score");
-  highScore.textContent = localStorage.getItem("savedHighScore");
+  highScore.textContent = highscore + "-" + initials;
 }
-
+ 
 function submittedScore(){
   setHighScore();
   getHighScore();
-  alert("Score Submitted");
+ 
 }
 
 submitbtn.addEventListener("click", submittedScore);
@@ -162,6 +169,18 @@ submitbtn.addEventListener("click", submittedScore);
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
 
+function refresh(){
+  time = 5;
+  currentQuestionIndex = 0;
+  score = 0;
+  // hides start screen
+  document.getElementById ("end-screen").setAttribute ("class", "hide");
+  // removes hide class from questions
+  document.getElementById("start-screen").removeAttribute("class");
+
+}
+
+resetButton.addEventListener("click", startGame);
 
 function answer_check(answer){
   correct = qlist[currentQuestionIndex].Answer;
