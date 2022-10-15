@@ -9,7 +9,7 @@ var choicesEl = document.getElementById("choices");
 var submitbtn = document.getElementById("submit");
 var initialsEl = document.getElementById("initials")
 var timerId;
-var time = 5;
+var time;
 var currentQuestionIndex = 0;
 var button_a;
 var button_b;
@@ -17,7 +17,6 @@ var button_c;
 var button_d;
 // var final_question_index = qlist.length() - 1;
 // var randomQuestionIndex = (Math.floor(Math.random() * final_question_index))
-var timerInterval;
 var score = 0;
 var correct; 
 
@@ -87,10 +86,11 @@ function startGame() {
   startscreenEl.setAttribute("class", "hide");
   // removes hide class from questions
   questionsEl.removeAttribute("class");
+  time = 6;
   // setinterval is used to create  imers, used with miliseconds
   timerId = setInterval (countdown, 1000);
   // uses var time 60
-  timerElement.textContent = time;
+  // timerElement.textContent = time;
   getQuestion ();
   
 }
@@ -170,17 +170,17 @@ submitbtn.addEventListener("click", submittedScore);
 startButton.addEventListener("click", startGame);
 
 function refresh(){
-  time = 5;
   currentQuestionIndex = 0;
   score = 0;
   // hides start screen
   document.getElementById ("end-screen").setAttribute ("class", "hide");
   // removes hide class from questions
   document.getElementById("start-screen").removeAttribute("class");
+  document.getElementById("start-screen").setAttribute("class", "start");
 
 }
 
-resetButton.addEventListener("click", startGame);
+resetButton.addEventListener("click", refresh);
 
 function answer_check(answer){
   correct = qlist[currentQuestionIndex].Answer;

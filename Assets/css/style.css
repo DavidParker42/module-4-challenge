@@ -1,4 +1,4 @@
-
+/* 
 *{
     margin: 0;
     padding: 0;
@@ -327,11 +327,11 @@ footer button.show{
 .buttons button.quit{
     color: #007bff;
     background: #fff;
-}
-.buttons button.quit:hover{
+} */
+/* .buttons button.quit:hover{
     color: #fff;
     background: #007bff;
-}
+} */
 
 .hide {
     display: none;
