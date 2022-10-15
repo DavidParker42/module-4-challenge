@@ -15,6 +15,61 @@ var button_b = document.getElementById("B");
 var button_c = document.getElementById("C");
 var button_d = document.getElementById("D");
 
+// questions must be at top otherwise it wont work
+var qlist = [
+  {
+  question: "What is Davids favortite color?",
+  Answer: "Blue",
+  options: [
+    "Blue",
+    "Yellow",
+    "Green",
+    "Red"
+  ]
+},
+  {
+  question: "What is David's favorite food?",
+  Answer: "Pizza",
+  options: [
+    "Pizza",
+    "Hotdogs",
+    "sandwiches",
+    "Cake"
+  ]
+},
+  {
+  question: "What color is grass?",
+  Answer: "Green",
+  options: [
+    "Green",
+    "yellow",
+    "Blue",
+    "Orange"
+  ]
+},
+  {
+  question: "Where do cars drive?",
+  Answer: "On the road",
+  options: [
+    "In the sky",
+    "On the road",
+    "In the water",
+    "In outer space"
+  ]
+},
+  {
+  question: "Which character is a letter?",
+  Answer: "K",
+  options: [
+    "?",
+    "1",
+    "K",
+    "+"
+  ]
+},
+
+
+];
 
 // function init() {
 //   getWins();
@@ -69,7 +124,7 @@ for (var i = 0; i < currentQuestion.options.length; i++){
 }
 }
 
-startbutton.onclick = ()=>{
+startButton.onclick = ()=>{
   info_box.classList.add("activeInfo"); //show info box
 }
 
@@ -116,7 +171,23 @@ quiz_body.style.display = "none"
 startButton.addEventListener("click", startGame);
 
 
+function answer_check(answer){
+  correct = qlist[currentQuestionIndex] !== Answer;
 
+  if (answer === correct && currentQuestionIndex !== final_quesiont_index){
+    score++;
+    alert("Correct");
+    currentQuestionIndex++;
+    questions_quiz();
+  }
+  else if (answer !== correct && currentQuestionIndex !==final_quesiont_index){
+    alert("incorrect");
+    currentQuestionIndex++;
+    questions_quiz();
+  }
+  else
+  score();
+}
 
 // attempt 1
 
@@ -226,57 +297,5 @@ startButton.addEventListener("click", startGame);
 //   document.getElementById("queston");
 // }
 
-var qlist = [
-    {
-    question: "What is Davids favortite color?",
-    answer: "Blue",
-    options: [
-      "Blue",
-      "Yellow",
-      "Green",
-      "Red"
-    ]
-  },
-    {
-    question: "What is David's favorite food?",
-    answer: "Pizza",
-    options: [
-      "Pizza",
-      "Hotdogs",
-      "sandwiches",
-      "Cake"
-    ]
-  },
-    {
-    question: "What color is grass?",
-    answer: "Green",
-    options: [
-      "Green",
-      "yellow",
-      "Blue",
-      "Orange"
-    ]
-  },
-    {
-    question: "Where do cars drive?",
-    answer: "On the road",
-    options: [
-      "In the sky",
-      "On the road",
-      "In the water",
-      "In outer space"
-    ]
-  },
-    {
-    question: "Which character is a letter?",
-    answer: "K",
-    options: [
-      "?",
-      "1",
-      "K",
-      "+"
-    ]
-  },
- 
-  
-];
+
+
