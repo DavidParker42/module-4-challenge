@@ -8,12 +8,18 @@ var choicesEl = document.getElementById("choices");
 var submitbtn = document.getElementById("submit");
 var initialsEl = document.getElementById("initials")
 var timerId;
-var time = 30;
+var time = 5;
 var currentQuestionIndex = 0;
-var button_a = document.getElementById("A");
-var button_b = document.getElementById("B");
-var button_c = document.getElementById("C");
-var button_d = document.getElementById("D");
+var button_a;
+var button_b;
+var button_c;
+var button_d;
+var final_question_index = qlist.length() - 1;
+// var randomQuestionIndex = (Math.floor(Math.random() * final_question_index))
+var timeLeft = 100;
+var timerInterval;
+var score = 0;
+var correct; 
 
 // questions must be at top otherwise it wont work
 var qlist = [
@@ -68,7 +74,6 @@ var qlist = [
   ]
 },
 
-
 ];
 
 
@@ -118,6 +123,7 @@ for (var i = 0; i < currentQuestion.options.length; i++){
   optionNode.setAttribute("value", option);
   optionNode.textContent = i + 1 + ". " + option;
   choicesEl.appendChild (optionNode);
+  optionNode.addEventListener("click", answer_check(option));
 }
 }
 
@@ -128,32 +134,35 @@ startButton.onclick = ()=>{
 
 // need a function that handles a click event, for if it is right or wrong, increment the current question index. quiz end function it clears out the interval and hides the questions, show final score, saving the score get the value get the initials and set it into local storage. click events for each button. need a high scores page that is added to my existing html or add an additional html
 
-var final_quesiont_index = qlist.length;
-var currentQuestionIndex = (Math.floor(Math.random() * final_quesiont_index))
-var timeLeft = 100;
-var timerInterval;
-var score = 0;
-var correct; 
+
 
 function quizEnd(){}
 
-function questions_quiz(){
-  gameoverDiv.style.display = "none";
-  if (currentQuestionIndex === finalQuestionIndex){
-    return showScore();
-  }
-  var current_question = qlist[currentQuestionIndex];
-  questionsEl.innerHTML = "<p>" + current_question.question + "<p/>";
-  button_a.innerHTML = current_question.length(0);
-  button_b.innerHTML = current_question.length(1);
-  button_c.innerHTML = current_question.length(2);
-  button_d.innerHTML = current_question.length(3);
-}
+// function questions_quiz(){
+//   // gameoverDiv.style.display = "none";
+//   // if (currentQuestionIndex === final_quesiont_index){
+//   //   return showScore();
+//   // }
+//   var current_question = qlist[currentQuestionIndex];
+//   questionsEl.innerHTML = "<p>" + current_question.question + "<p/>";
+//   button_a = document.getElementById("A");
+//   button_b = document.getElementById("B");
+//   button_c = document.getElementById("C");
+//   button_d = document.getElementById("D");
+//   button_a.innerHTML = current_question.options[0];
+//   button_b.innerHTML = current_question.options[1];
+//   button_c.innerHTML = current_question.options[2];
+//   button_d.innerHTML = current_question.options[3];
+//   button_a.addEventListener("click", answer_check(button_a.innerHTML));
+//   button_b.addEventListener("click", answer_check(button_b.innerHTML));
+//   button_c.addEventListener("click", answer_check(button_c.innerHTML));
+//   button_d.addEventListener("click", answer_check(button_d.innerHTML));
+// }
 
 function quizStart(){
 All_doneDiv.style.display = "none";
 questionsDiv.style.display = "none";
-questions_quiz();
+getQuestion();
 
 timerInterval = setInterval(function() {
   timeLeft--;
@@ -161,7 +170,7 @@ timerInterval = setInterval(function() {
 
   if (time === 0){
     clearInterval(timerInterval);
-    showScore();
+    // showScore();
   }
 }, 1000);
 quiz_body.style.display = "none"
@@ -173,24 +182,21 @@ startButton.addEventListener("click", startGame);
 function answer_check(answer){
   correct = qlist[currentQuestionIndex].Answer;
 
-  if (answer === correct && currentQuestionIndex !== final_quesiont_index){
+  if (answer === correct && currentQuestionIndex !== final_question_index){
     score++;
     alert("Correct");
     currentQuestionIndex++;
-    questions_quiz();
+    getQuestion();
   }
-  else if (answer !== correct && currentQuestionIndex !==final_quesiont_index){
+  else if (answer !== correct && currentQuestionIndex !==final_question_index){
     alert("incorrect");
     currentQuestionIndex++;
-    questions_quiz();
+    getQuestion();
   }
-  else score();
+  else
   quizEnd ();
 }
-button_a.addEventListener("click", answer_check(button_a.innerHTML));
-button_b.addEventListener("click", answer_check(button_b.innerHTML));
-button_c.addEventListener("click", answer_check(button_c.innerHTML));
-button_d.addEventListener("click", answer_check(button_d.innerHTML));
+
 
 
 // attempt 1
