@@ -8,7 +8,7 @@ var choicesEl = document.getElementById("choices");
 var submitbtn = document.getElementById("submit");
 var initialsEl = document.getElementById("initials")
 var timerId;
-var time = 60;
+var time = 30;
 var currentQuestionIndex = 0;
 var button_a = document.getElementById("A");
 var button_b = document.getElementById("B");
@@ -71,10 +71,7 @@ var qlist = [
 
 ];
 
-// function init() {
-//   getWins();
-//   getlosses();
-// }
+
 
 function startGame() {
   var startscreenEl = document.getElementById("start-screen")
@@ -138,6 +135,8 @@ var timerInterval;
 var score = 0;
 var correct; 
 
+function quizEnd(){}
+
 function questions_quiz(){
   gameoverDiv.style.display = "none";
   if (currentQuestionIndex === finalQuestionIndex){
@@ -172,7 +171,7 @@ startButton.addEventListener("click", startGame);
 
 
 function answer_check(answer){
-  correct = qlist[currentQuestionIndex] !== Answer;
+  correct = qlist[currentQuestionIndex].Answer;
 
   if (answer === correct && currentQuestionIndex !== final_quesiont_index){
     score++;
@@ -185,9 +184,14 @@ function answer_check(answer){
     currentQuestionIndex++;
     questions_quiz();
   }
-  else
-  score();
+  else score();
+  quizEnd ();
 }
+button_a.addEventListener("click", answer_check(button_a.innerHTML));
+button_b.addEventListener("click", answer_check(button_b.innerHTML));
+button_c.addEventListener("click", answer_check(button_c.innerHTML));
+button_d.addEventListener("click", answer_check(button_d.innerHTML));
+
 
 // attempt 1
 
