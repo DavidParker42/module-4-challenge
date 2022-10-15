@@ -14,7 +14,7 @@ var button_a;
 var button_b;
 var button_c;
 var button_d;
-var final_question_index = qlist.length() - 1;
+// var final_question_index = qlist.length() - 1;
 // var randomQuestionIndex = (Math.floor(Math.random() * final_question_index))
 var timeLeft = 100;
 var timerInterval;
@@ -123,13 +123,13 @@ for (var i = 0; i < currentQuestion.options.length; i++){
   optionNode.setAttribute("value", option);
   optionNode.textContent = i + 1 + ". " + option;
   choicesEl.appendChild (optionNode);
-  optionNode.addEventListener("click", answer_check(option));
+  // optionNode.addEventListener("click", answer_check(option));
 }
 }
 
-startButton.onclick = ()=>{
-  info_box.classList.add("activeInfo"); //show info box
-}
+// startButton.onclick = ()=>{
+//   info_box.classList.add("activeInfo"); //show info box
+// }
 
 
 // need a function that handles a click event, for if it is right or wrong, increment the current question index. quiz end function it clears out the interval and hides the questions, show final score, saving the score get the value get the initials and set it into local storage. click events for each button. need a high scores page that is added to my existing html or add an additional html
@@ -182,13 +182,13 @@ startButton.addEventListener("click", startGame);
 function answer_check(answer){
   correct = qlist[currentQuestionIndex].Answer;
 
-  if (answer === correct && currentQuestionIndex !== final_question_index){
+  if (answer === correct && currentQuestionIndex < qlist.length){
     score++;
     alert("Correct");
     currentQuestionIndex++;
     getQuestion();
   }
-  else if (answer !== correct && currentQuestionIndex !==final_question_index){
+  else if (answer !== correct && currentQuestionIndex < qlist.length){
     alert("incorrect");
     currentQuestionIndex++;
     getQuestion();
