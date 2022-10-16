@@ -86,7 +86,7 @@ function startGame() {
   startscreenEl.setAttribute("class", "hide");
   // removes hide class from questions
   questionsEl.removeAttribute("class");
-  time = 6;
+  time = 30;
   // setinterval is used to create  imers, used with miliseconds
   timerId = setInterval (countdown, 1000);
   // uses var time 60
@@ -177,6 +177,7 @@ function refresh(){
   // removes hide class from questions
   document.getElementById("start-screen").removeAttribute("class");
   document.getElementById("start-screen").setAttribute("class", "start");
+  timerElement.removeAttribute("class");
 
 }
 
