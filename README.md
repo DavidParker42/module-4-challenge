@@ -22,7 +22,7 @@ This has a quiz that allows you to go through and get a score, that also gives y
 
 
   ## Application Type
-  JavaScript
+  Web APIs
 
   ## Github repository link
   https://github.com/DavidParker42/module-4-challenge
